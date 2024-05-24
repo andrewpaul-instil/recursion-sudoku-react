@@ -1,23 +1,29 @@
 import {GRIDSIZE, MIDDLESQUARESIZE, UNKNOWNVALUE} from "../global/Constants.ts";
 
-export const RefactoredSolver = (initialGrid: number[]) => {
+export const RefactoredSolver = (grid: number[]) => {
+    const initialGrid: number[] = [];
+    let countNonZeroes: number = 0;
+    for (const value of grid) {
+        initialGrid.push(value);
+        if (value > 0) countNonZeroes++;
+        console.log(value + "grid " + initialGrid + "initial " + countNonZeroes)
+    }
+
     const board: number[][] = [];
-    while(initialGrid.length) board.push(initialGrid.splice(0,9));
+    while(initialGrid.length) board.push(initialGrid.splice(0,GRIDSIZE));
     printBoard(board);
 
-    if (solveBoard(board)) {
+    if (checkForValidBoard(board) && countNonZeroes >= 16 && solveBoard(board)) {
         console.log("Solved successfully!");
         printBoard(board);
         return board.flat();
     }
     else {
         console.log("This board cannot be solved!");
-        return initialGrid;
+        return grid;
     }
 
 }
-
-
 
 const printBoard = (board: number[][]) => {
     let result: string = "";
@@ -73,6 +79,15 @@ const isValidPlacement = (board: number[][], value: number, row: number, column:
     return !isNumberInRow(board, value, row) &&
         !isNumberInColumn(board, value, column) &&
         !isNumberInMiddleSquare(board, value, row, column);
+}
+
+const checkForValidBoard = (board: number[][]) => {
+    for (let row: number = 0; row < GRIDSIZE; row++) {
+        for (let column: number = 0; column < GRIDSIZE; column++) {
+            if (!isValidPlacement(board, board[row][column], row, column)) return false;
+        }
+    }
+    return true;
 }
 
 const solveBoard = (board: number[][]): boolean => {
