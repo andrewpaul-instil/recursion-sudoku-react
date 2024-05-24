@@ -1,0 +1,41 @@
+.sudokugrid {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 33% 34% 33%;
+  border: black solid 9px !important;
+  /*background-color: yellow;*/
+  margin-top: 10px;
+  width: 90vh;
+  aspect-ratio: 1;
+}
+
+.middlegrid {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 33% 34% 33%;
+  border: black solid 4px;
+  /*background-color: orange;*/
+  width: 100%;
+}
+
+.numbersquare {
+  width: 100%;
+  border: black solid 1px;
+  background-color: white;
+}
+
+input {
+  text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
