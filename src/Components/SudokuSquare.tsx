@@ -1,11 +1,15 @@
 import '../App.css';
-import {MiddleSquare} from "./MiddleSquare.tsx";
-import {Gridsize} from "../Constants.ts";
+import {GRIDSIZE} from "../Constants.ts";
+import {NumberSquare} from "./NumberSquare.tsx";
 
-export const SudokuSquare = () => {
+interface Props {
+    grid: number[]
+}
+
+export const SudokuSquare = ({grid}: Props) => {
     return (
         <div className="sudokugrid">
-            {[...Array(Gridsize)].map((_value, index) => <MiddleSquare key={index}/>)}
+            {[...Array(GRIDSIZE*GRIDSIZE)].map((_value, index) => <NumberSquare grid={grid} key={index} position={index}/>)}
         </div>
     );
 }

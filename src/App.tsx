@@ -1,21 +1,19 @@
-
 import './App.css'
 import {SudokuSquare} from "./Components/SudokuSquare.tsx";
-import {OriginalSolverNoUI} from "./SolvingAlgorithms/OriginalSolverNoUI.ts";
-import {RefactoredSolverNoUI} from "./SolvingAlgorithms/RefactoredSolverNoUI.ts";
+import {RefactoredSolver} from "./SolvingAlgorithms/RefactoredSolver.ts";
+import {useState} from "react";
+import {GRIDSIZE, UNKNOWNVALUE} from "./Constants.ts";
 
 function App() {
+    const [grid, setGrid] = useState(new Array<number>(GRIDSIZE*GRIDSIZE).fill(UNKNOWNVALUE));
 
     const solveThis = () => {
-        console.log("Solving!");
+        setGrid(RefactoredSolver(grid));
     }
-
-    OriginalSolverNoUI();
-    RefactoredSolverNoUI();
 
   return (
     <>
-      <SudokuSquare/>
+      <SudokuSquare grid={grid}/>
       <button onClick={solveThis}>Solve</button>
     </>
   )

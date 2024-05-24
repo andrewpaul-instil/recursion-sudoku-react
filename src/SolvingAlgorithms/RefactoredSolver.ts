@@ -1,25 +1,18 @@
-import {Gridsize, MiddleSquareSize, UnknownSquareValue} from "../Constants.ts";
+import {GRIDSIZE, MIDDLESQUARESIZE, UNKNOWNVALUE} from "../Constants.ts";
 
-export const RefactoredSolverNoUI = () => {
-    const board: number[][] = [
-        [7, 0, 2, 0, 5, 0, 6, 0, 0],
-        [0, 0, 0, 0, 0, 3, 0, 0, 0],
-        [1, 0, 0, 0, 0, 9, 5, 0, 0],
-        [8, 0, 0, 0, 0, 0, 0, 9, 0],
-        [0, 4, 3, 0, 0, 0, 7, 5, 0],
-        [0, 9, 0, 0, 0, 0, 0, 0, 8],
-        [0, 0, 9, 7, 0, 0, 0, 0, 5],
-        [0, 0, 0, 2, 0, 0, 0, 0, 0],
-        [0, 0, 7, 0, 4, 0, 2, 0, 3]
-    ];
+export const RefactoredSolver = (initialGrid: number[]) => {
+    const board: number[][] = [];
+    while(initialGrid.length) board.push(initialGrid.splice(0,9));
     printBoard(board);
 
     if (solveBoard(board)) {
         console.log("Solved successfully!");
         printBoard(board);
+        return board.flat();
     }
     else {
         console.log("This board cannot be solved!");
+        return initialGrid;
     }
 
 }
@@ -28,12 +21,12 @@ export const RefactoredSolverNoUI = () => {
 
 const printBoard = (board: number[][]) => {
     let result: string = "";
-    for (let row: number = 0; row < Gridsize; row++) {
-        if (row % MiddleSquareSize == 0 && row != 0) {
+    for (let row: number = 0; row < GRIDSIZE; row++) {
+        if (row % MIDDLESQUARESIZE == 0 && row != 0) {
             result += "-----------\n";
         }
-        for (let column: number = 0; column < Gridsize; column++) {
-            if (column % MiddleSquareSize == 0 && column != 0) {
+        for (let column: number = 0; column < GRIDSIZE; column++) {
+            if (column % MIDDLESQUARESIZE == 0 && column != 0) {
                 result += "|";
             }
             result += board[row][column];
@@ -45,7 +38,7 @@ const printBoard = (board: number[][]) => {
 
 
 const isNumberInRow = (board: number[][], value: number, row: number) => {
-    for (let column: number = 0; column < Gridsize; column++) {
+    for (let column: number = 0; column < GRIDSIZE; column++) {
         if (board[row][column] == value) {
             return true;
         }
@@ -54,7 +47,7 @@ const isNumberInRow = (board: number[][], value: number, row: number) => {
 }
 
 const isNumberInColumn = (board: number[][], value: number, column: number) => {
-    for (let row: number = 0; row < Gridsize; row++) {
+    for (let row: number = 0; row < GRIDSIZE; row++) {
         if (board[row][column] == value) {
             return true;
         }
@@ -101,19 +94,19 @@ const solve = (board: number[][], row: number, column: number): boolean => {
 }
 
 const isSolved = (row: number): boolean => {
-    return row == Gridsize;
+    return row == GRIDSIZE;
 }
 
 const getNextSquare = (row: number, column: number): [number, number] => {
-    return (column == Gridsize - 1) ? [row + 1, 0] : [row, column + 1];
+    return (column == GRIDSIZE - 1) ? [row + 1, 0] : [row, column + 1];
 }
 
 const isUnknownSquare = (board: number[][], row: number, column: number): boolean => {
-    return board[row][column] == UnknownSquareValue;
+    return board[row][column] == UNKNOWNVALUE;
 }
 
 const tryValues = (board: number[][], row: number, column: number, nextRow: number, nextColumn: number): boolean => {
-    for (let valueToTry: number = 1; valueToTry <= Gridsize; valueToTry++) {
+    for (let valueToTry: number = 1; valueToTry <= GRIDSIZE; valueToTry++) {
         if (isValidPlacement(board, valueToTry, row, column)) {
             board[row][column] = valueToTry;
 
@@ -121,7 +114,7 @@ const tryValues = (board: number[][], row: number, column: number, nextRow: numb
                 return true;
             }
 
-            board[row][column] = UnknownSquareValue;
+            board[row][column] = UNKNOWNVALUE;
         }
     }
     return false;

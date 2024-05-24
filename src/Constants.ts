@@ -1,3 +1,3 @@
-export const Gridsize = 9;
-export const MiddleSquareSize = 3;
-export const UnknownSquareValue = 0;
+export const GRIDSIZE = 9;
+export const MIDDLESQUARESIZE = 3;
+export const UNKNOWNVALUE = 0;

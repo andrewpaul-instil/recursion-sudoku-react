@@ -1,27 +1,28 @@
 .sudokugrid {
   display: grid;
   gap: 0;
-  grid-template-columns: 33% 34% 33%;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
   border: black solid 9px !important;
   /*background-color: yellow;*/
   margin-top: 10px;
-  width: 90vh;
+  height: 90vh;
   aspect-ratio: 1;
 }
 
-.middlegrid {
-  display: grid;
-  gap: 0;
-  grid-template-columns: 33% 34% 33%;
-  border: black solid 4px;
-  /*background-color: orange;*/
-  width: 100%;
-}
-
 .numbersquare {
+  box-sizing: border-box;
   width: 100%;
   border: black solid 1px;
   background-color: white;
+}
+
+.innerrightedge  {
+  border-right: black solid 3px;
+}
+
+.innerbottomedge  {
+  border-bottom: black solid 3px;
 }
 
 input {
