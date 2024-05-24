@@ -1,5 +1,5 @@
 import '../App.css';
-import {GRIDSIZE} from "../Constants.ts";
+import {GRIDSIZE} from "../global/Constants.ts";
 import {NumberSquare} from "./NumberSquare.tsx";
 
 interface Props {

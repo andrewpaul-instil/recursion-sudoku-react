@@ -1,8 +1,8 @@
 import './App.css'
-import {SudokuSquare} from "./Components/SudokuSquare.tsx";
-import {RefactoredSolver} from "./SolvingAlgorithms/RefactoredSolver.ts";
+import {SudokuSquare} from "./components/SudokuSquare.tsx";
+import {RefactoredSolver} from "./algorithms/RefactoredSolver.ts";
 import {useState} from "react";
-import {GRIDSIZE, UNKNOWNVALUE} from "./Constants.ts";
+import {GRIDSIZE, UNKNOWNVALUE} from "./global/Constants.ts";
 
 function App() {
     const [grid, setGrid] = useState(new Array<number>(GRIDSIZE*GRIDSIZE).fill(UNKNOWNVALUE));

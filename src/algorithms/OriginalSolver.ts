@@ -1,4 +1,4 @@
-import {GRIDSIZE, MIDDLESQUARESIZE, UNKNOWNVALUE} from "../Constants.ts";
+import {GRIDSIZE, MIDDLESQUARESIZE, UNKNOWNVALUE} from "../global/Constants.ts";
 
 export const OriginalSolver = () => {
     const board: number[][] = [
